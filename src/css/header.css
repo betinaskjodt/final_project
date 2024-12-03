@@ -1,0 +1,116 @@
+/* styling navbar to be horizontal */
+header {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.navbar {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: var(--spacing-medium) var(--spacing-large);
+}
+
+/* styling title in navbar (COLDPLAY) */
+.navbar__title {
+  font-family: var(--font-family-bold);
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+
+/* styling links */
+.navbar__menu-container {
+  flex-grow: 1;
+}
+
+.navbar__links-list {
+  display: flex;
+  justify-content: space-evenly;
+  gap: var(--spacing-medium);
+
+  list-style: none;
+}
+
+.navbar__link,
+.navbar__title-link {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.navbar__link:hover {
+  color: var(--hover-color);
+  transition: color 0.3s linear;
+}
+
+.navbar__item--active {
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.navbar__item--active:hover {
+  border-bottom-color: var(--hover-color);
+  transition: color 0.3s linear, border-bottom-color 0.3s linear;
+}
+
+/* styling menu button */
+.navbar__toggle-btn {
+  display: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 1;
+  position: relative;
+}
+
+.navbar__toggle-icon {
+  color: var(--primary-color);
+}
+
+.navbar__toggle-icon:hover {
+  color: var(--hover-color);
+  transition: color 0.3s linear;
+}
+
+/* media media querie for smaler screen */
+@media screen and (max-width: 825px) {
+  .navbar__links-list {
+    position: absolute;
+    top: 0;
+    left: -1000px;
+    width: 50%;
+    height: 100%;
+
+    transition: 0.5s;
+    background-color: var(--secondary-color);
+    opacity: 0.6;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar__links-list--active {
+    left: 0;
+    padding: 0 var(--spacing-medium);
+  }
+
+  .navbar__link {
+    font-size: var(--spacing-small);
+  }
+
+  .navbar__toggle-btn {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navbar__links-list {
+    width: 100%;
+  }
+
+  .navbar__link {
+    font-size: var(--spacing-medium);
+  }
+}
