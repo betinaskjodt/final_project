@@ -342,8 +342,8 @@ const tourConatiner = document.querySelector(".tour");
 const openTicketSite = () => {};
 
 // displaying data from array in to elemnts and more :)
-const printTour = (toursArray) => {
-  toursArray.forEach((tour) => {
+const printTour = (tours) => {
+  tours.forEach((tour) => {
     const singleTourContainer = document.createElement("div");
     const dateContainer = document.createElement("div");
     const locationContainer = document.createElement("div");
@@ -428,9 +428,9 @@ const sortTour = () => {
 
   contentButton.forEach((button, index) => {
     button.addEventListener("click", () => {
-      let filterTours = [...toursArray];
-      filterTours = filterTours.filter((tour) => {
-        return tour.continent;
+      let filterTours = [...tours];
+      filterTours = filterTours.filter(() => {
+        return filterTours.continent;
       });
 
       // singleTourContainer.classList.add("tour__container--active");
@@ -445,6 +445,6 @@ const sortTour = () => {
 
 // adds elements to page
 document.addEventListener("DOMContentLoaded", () => {
+  printTour(tours);
   sortTour();
-  printTour(toursArray);
 });
