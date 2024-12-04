@@ -1,3 +1,4 @@
+/* INPORT FONT FAMILY */
 @font-face {
   font-family: "FunnelDisplay-Regular";
   src: url(../assets/fonts/FunnelDisplay-Regular.ttf);
@@ -17,9 +18,9 @@ body {
 
 main {
   width: 100%;
-  height: inherit;
+  min-height: 100vh;
 }
-
+/* STYLES FOR  INDEX.HTML */
 .home-page__title-container {
   width: 100%;
   height: 100%;
@@ -41,6 +42,7 @@ main {
   padding-bottom: var(--spacing-xlarge);
 }
 
+/* MEDIA QUERIES */
 @media screen and (max-width: 948px) {
   .home-page__title-container {
     justify-content: center;
