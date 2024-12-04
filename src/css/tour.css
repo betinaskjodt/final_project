@@ -1,0 +1,83 @@
+/* DISPLAY BUTTON CONTENT */
+.Tab {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-small) var(--spacing-medium);
+  gap: var(--spacing-xsmall);
+}
+
+.tab__button {
+  flex-grow: 1;
+  padding: var(--spacing-small);
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+  font-size: var(--font-size-small);
+  font-family: var(--font-family-bold);
+}
+
+.tab__button--active {
+  background-color: var(--secondary-color);
+}
+
+/* DISPLAYING TOUR LIST */
+.tour {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+  padding: var(--spacing-small) var(--spacing-medium);
+}
+
+.tour__container {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid black;
+  padding: var(--spacing-xsmall) var(--spacing-small);
+}
+
+.tour__date-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.tour__location-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tour__continent-container {
+  display: none;
+}
+
+/* ADDING STYLE TO TICKET BUTTON */
+.tour__ticket-button {
+  width: var(--spacing-xlarge);
+  height: var(--spacing-large);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: none;
+  cursor: pointer;
+}
+
+.tour__ticket-button--active {
+  background-color: var(--quaternary-color);
+  transform: scale(1);
+  transition: background-color 500ms ease, transform 500ms ease;
+}
+
+.tour__ticket-button--active:hover {
+  background-color: var(--tertiary-color);
+  transition: background-color 500ms ease;
+}
+
+.tour__ticket-button--active:active {
+  transform: scale(0.9);
+  transition: transform 500ms ease;
+}
