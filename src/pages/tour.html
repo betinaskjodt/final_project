@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -25,11 +26,8 @@
 
         <div class="navbar__menu-container">
           <ul class="navbar__links-list navbar__links-list--active">
-            <li class="navbar__item navbar__item--active">
-              <a
-                class="navbar__link navbar__link--active"
-                data-page="home"
-                href="../index.html"
+            <li class="navbar__item">
+              <a class="navbar__link" data-page="home" href="../index.html"
                 >HOME</a
               >
             </li>
@@ -70,7 +68,15 @@
     </header>
 
     <main>
-      <section class="tab"></section>
+      <section class="tab">
+        <button class="tab__button" data-continent="all">All</button>
+        <button class="tab__button" data-continent="europa">Europa</button>
+        <button class="tab__button" data-continent="asia">Asia</button>
+        <button class="tab__button" data-continent="africa">Africa</button>
+        <button class="tab__button" data-continent="north-america">
+          North-America
+        </button>
+      </section>
       <section class="tour"></section>
     </main>
 
@@ -142,7 +148,7 @@
         </div>
       </section>
     </footer>
-    <script src="../js/tour.js"></script>
     <script src="../js/app.js"></script>
+    <script src="../js/tour.js"></script>
   </body>
 </html>

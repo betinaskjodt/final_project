@@ -1,4 +1,10 @@
-# webstie for band
+# bandwebsite
+
+## Deployment
+
+add netlify
+
+## Sources
 
 kilder:
 github (november 18, 2024). 04-responsive navbar. Retrived november 20, 2024, from https://github.com/frontend-kristiania/04-responsive-navbar/blob/main/src/css/navbar.css

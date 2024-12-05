@@ -1,19 +1,20 @@
 /* DISPLAY BUTTON CONTENT */
-.Tab {
-  width: 90%;
+.tab {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  padding: var(--spacing-small) var(--spacing-medium);
+  justify-content: space-evenly;
+  padding: var(--spacing-medium) 5.5rem;
   gap: var(--spacing-xsmall);
 }
 
 .tab__button {
   flex-grow: 1;
-  padding: var(--spacing-small);
+  padding: var(--spacing-xsmall) 0;
   background-color: var(--tertiary-color);
   color: var(--primary-color);
   font-size: var(--font-size-small);
   font-family: var(--font-family-bold);
+  border: none;
 }
 
 .tab__button--active {
@@ -26,6 +27,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--spacing-medium);
   padding: var(--spacing-small) var(--spacing-medium);
 }
@@ -53,7 +55,7 @@
 }
 
 .tour__continent-container {
-  display: none;
+  visibility: hidden;
 }
 
 /* ADDING STYLE TO TICKET BUTTON */
