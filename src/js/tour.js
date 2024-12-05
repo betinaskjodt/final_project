@@ -335,15 +335,22 @@ const tours = [
 ];
 
 // selecting elements from document
-const continentButtonsContainer = document.querySelector(".tab");
+const continentButtons = document.querySelectorAll(".tab__button");
 const tourConatiner = document.querySelector(".tour");
+
+// calling the function and adding content on browser
+document.addEventListener("DOMContentLoaded", () => {
+  printTour(tours);
+  filterDisplay(tours);
+});
 
 // Avalible tickets ticket buttons open window
 const openTicketSite = () => {};
 
-// displaying data from array in to elemnts and more :)
-const printTour = (tours) => {
-  tours.forEach((tour) => {
+// displaying data from array in to elemnts and filte by contient when tab buttons are clicked.s
+const printTour = (toursArray) => {
+  tourConatiner.textContent = "";
+  toursArray.forEach((tour) => {
     const singleTourContainer = document.createElement("div");
     const dateContainer = document.createElement("div");
     const locationContainer = document.createElement("div");
@@ -398,53 +405,27 @@ const printTour = (tours) => {
   });
 };
 
-// Rednder tabs and sort by continet
-const sortTour = () => {
-  const europaButton = document.createElement("button");
-  europaButton.classList.add("tab__button");
-  europaButton.textContent = "Europa";
-
-  const asiaButton = document.createElement("button");
-  asiaButton.classList.add("tab__button");
-  asiaButton.textContent = "Asia";
-
-  const amrericaButton = document.createElement("button");
-  amrericaButton.classList.add("tab__button");
-  amrericaButton.textContent = "North-America";
-
-  const africaButton = document.createElement("button");
-  africaButton.classList.add("tab__button");
-  africaButton.textContent = "Africa";
-
-  continentButtonsContainer.append(
-    europaButton,
-    africaButton,
-    asiaButton,
-    amrericaButton
-  );
-
-  const contentButton = [];
-  contentButton.push(europaButton, africaButton, asiaButton, amrericaButton);
-
-  contentButton.forEach((button, index) => {
-    button.addEventListener("click", () => {
-      let filterTours = [...tours];
-      filterTours = filterTours.filter(() => {
-        return filterTours.continent;
+// display correct content when filtering by tab button?
+const filterDisplay = (toursArray) => {
+  continentButtons.forEach((button) => {
+    button.classList.remove("tab__button--active");
+    button.addEventListener("click", (e) => {
+      const continent = button.dataset.continent;
+      let filterTours = [...toursArray];
+      filterTours = filterTours.filter((tour) => {
+        return tour.continent.toLowerCase() === continent.toLowerCase();
       });
-
-      // singleTourContainer.classList.add("tour__container--active");
-
-      contentButton.forEach((btn) => {
-        btn.classList.remove("tab__button--active");
-      });
-      button.classList.add("tab__button--active");
+      if (filterTours.length > 0) {
+        e.target.classList.add("tab__button--active");
+        printTour(filterTours);
+      } else if (button.dataset === "all") {
+        e.target.classList.add("tab__button--active");
+        printTour(tours);
+      } else {
+        console.log("error");
+        console.log("Filtering by:", filterTours);
+        console.log("continent by:", continent);
+      }
     });
   });
 };
-
-// adds elements to page
-document.addEventListener("DOMContentLoaded", () => {
-  printTour(tours);
-  sortTour();
-});
