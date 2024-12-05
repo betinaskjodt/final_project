@@ -408,23 +408,25 @@ const printTour = (toursArray) => {
 // display correct content when filtering by tab button?
 const filterDisplay = (toursArray) => {
   continentButtons.forEach((button) => {
-    button.classList.remove("tab__button--active");
     button.addEventListener("click", (e) => {
+      continentButtons.forEach((btn) =>
+        btn.classList.remove("tab__button--active")
+      );
       const continent = button.dataset.continent;
+
       let filterTours = [...toursArray];
       filterTours = filterTours.filter((tour) => {
         return tour.continent.toLowerCase() === continent.toLowerCase();
       });
-      if (filterTours.length > 0) {
+
+      if (continent === "all") {
+        e.target.classList.add("tab__button--active");
+        printTour(toursArray);
+      } else if (filterTours.length > 0) {
         e.target.classList.add("tab__button--active");
         printTour(filterTours);
-      } else if (button.dataset === "all") {
-        e.target.classList.add("tab__button--active");
-        printTour(tours);
       } else {
         console.log("error");
-        console.log("Filtering by:", filterTours);
-        console.log("continent by:", continent);
       }
     });
   });
