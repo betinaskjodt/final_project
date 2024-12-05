@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,8 +12,7 @@
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="../css/signup.css" />
     <title>Coldplay - SIGN UP</title>
   </head>
   <body>
@@ -32,20 +32,17 @@
               >
             </li>
             <li class="navbar__item">
-              <a class="navbar__link" data-page="news" href="../pages/news.html"
+              <a class="navbar__link" data-page="news" href="./news.html"
                 >NEWS</a
               >
             </li>
             <li class="navbar__item">
-              <a class="navbar__link" data-page="tour" href="../pages/tour.html"
+              <a class="navbar__link" data-page="tour" href="./tour.html"
                 >TOUR</a
               >
             </li>
             <li class="navbar__item">
-              <a
-                class="navbar__link"
-                data-page="music"
-                href="../pages/music.html"
+              <a class="navbar__link" data-page="music" href="./music.html"
                 >MUSIC</a
               >
             </li>
@@ -91,41 +88,51 @@
           <input
             class="singup__name-input"
             type="text"
-            name="fullname"
+            name="name"
             id="fullname"
             required
             placeholder="FULL NAME"
           />
         </div>
+        <div class="signup__birthday-container">
+          <label class="signup__birthday-label" for="birthday">Birthday</label>
+          <input
+            class="signup__birthday-input"
+            type="date"
+            name="birthday"
+            id="birthday"
+          />
+        </div>
 
         <div class="singup__phone-container">
-          <label class="singup__phone-label" for="phone">Phone</label>
+          <label class="singup__phone-label" for="phonenumber">Phone</label>
           <input
             class="singup__phone-input"
             type="tel"
             name="phone"
-            id="phone"
+            id="phonenumber"
             placeholder="PHONE NUMBER"
             required
           />
         </div>
 
         <div class="singup__email-container">
-          <label class="singup__email-label" for="email">Email</label>
+          <label class="singup__email-label" for="emailaddress">Email</label>
           <input
             class="singup__email-input"
             type="email"
             name="email"
-            id="email"
+            id="emailaddress"
             placeholder="EMAIL ADDRESS"
             required
           />
         </div>
 
         <div class="singup__country-container">
-          <select class="singup__country" name="" id="">
-            <option class="singup__country-option" value="">Norway</option>
-            <option class="singup__country-option" value="">Sweden</option>
+          <select class="singup__country" name="" id="country">
+            <option class="singup__country-option" value="country">
+              Select a Country/Region
+            </option>
           </select>
         </div>
 
@@ -134,7 +141,6 @@
             <input
               class="singup__terms-input"
               type="checkbox"
-              name="terms"
               id="terms"
               required
             />
@@ -151,7 +157,6 @@
             <input
               class="singup__condition-input"
               type="checkbox"
-              name="condition"
               id="condition"
               required
             />
@@ -240,6 +245,7 @@
         </div>
       </section>
     </footer>
-    <script src="./js/app.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/signup.js"></script>
   </body>
 </html>

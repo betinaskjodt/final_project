@@ -1,0 +1,84 @@
+/* displaying sign up in center of the page */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* styling for sign up container */
+.signup {
+  width: 60%;
+  min-height: 70vh;
+  border: 1px solid black;
+  padding: 0 var(--spacing-large);
+  background-color: var(--quaternary-color);
+  color: var(--primary-color);
+}
+
+.signup__title {
+  text-align: center;
+  font-family: var(--font-family-bold);
+  font-size: var(--font-size-xlarge);
+
+  padding: var(--spacing-small);
+}
+
+.signup__description {
+  padding: var(--spacing-small) var(--spacing-xsmall);
+  line-height: 1.6;
+}
+
+.singup__name-label,
+.singup__phone-label,
+.singup__email-label,
+.signup__birthday-label {
+  display: none;
+}
+
+input,
+.singup__country {
+  width: 100%;
+  padding: var(--spacing-small);
+  color: var(--quaternary-color);
+  font-family: var(--font-family-bold);
+  border-radius: 5px;
+  margin: 0.5rem 0;
+}
+
+input:focus,
+.singup__country:focus {
+  outline: none;
+}
+
+.singup__terms-container,
+.singup__condition-container {
+  display: flex;
+  line-height: 1.6;
+  padding: var(--spacing-xsmall);
+  gap: var(--spacing-small);
+}
+
+.singup__terms-input,
+.singup__condition-input {
+  width: var(--spacing-small);
+}
+
+.singup__submit-container {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-small) 0;
+}
+
+.singup__submit-button {
+  width: 50%;
+  height: var(--spacing-large);
+  border-radius: 5px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-size: var(--font-size-medium);
+  border: none;
+}
+
+.singup__submit-button:hover {
+  background-color: var(--tertiary-color);
+}
