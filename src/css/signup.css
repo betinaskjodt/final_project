@@ -28,15 +28,15 @@ main {
   line-height: 1.6;
 }
 
-.singup__name-label,
-.singup__phone-label,
-.singup__email-label,
+.signup__name-label,
+.signup__phone-label,
+.signup__email-label,
 .signup__birthday-label {
   display: none;
 }
 
 input,
-.singup__country {
+.signup__country {
   width: 100%;
   padding: var(--spacing-small);
   color: var(--quaternary-color);
@@ -46,30 +46,30 @@ input,
 }
 
 input:focus,
-.singup__country:focus {
+.signup__country:focus {
   outline: none;
 }
 
-.singup__terms-container,
-.singup__condition-container {
+.signup__terms-container,
+.signup__condition-container {
   display: flex;
   line-height: 1.6;
   padding: var(--spacing-xsmall);
   gap: var(--spacing-small);
 }
 
-.singup__terms-input,
-.singup__condition-input {
+.signup__terms-input,
+.signup__condition-input {
   width: var(--spacing-small);
 }
 
-.singup__submit-container {
+.signup__submit-container {
   display: flex;
   justify-content: center;
   padding: var(--spacing-small) 0;
 }
 
-.singup__submit-button {
+.signup__submit-button {
   width: 50%;
   height: var(--spacing-large);
   border-radius: 5px;
@@ -79,6 +79,31 @@ input:focus,
   border: none;
 }
 
-.singup__submit-button:hover {
+.signup__submit-button:hover {
   background-color: var(--tertiary-color);
+}
+
+.signup__toast {
+  display: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+  padding: var(--spacing-medium);
+  font-size: var(--font-size-medium);
+  position: absolute;
+  top: 50%;
+}
+
+.signup__toast--active {
+  display: block;
+}
+
+.signup__toast-close-button {
+  cursor: pointer;
+  padding: var(--spacing-xsmall);
+}
+
+.signup__toast-close-button:hover {
+  color: var(--quaternary-color);
 }
