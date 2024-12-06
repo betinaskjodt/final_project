@@ -74,7 +74,7 @@
     </header>
 
     <main>
-      <form action="" class="signup">
+      <form id="form" class="signup" autocomplete="off">
         <div class="signup__info-container">
           <h2 class="signup__title">Sign Up</h2>
           <p class="signup__description">
@@ -83,13 +83,14 @@
             list and we’ll be in touch.
           </p>
         </div>
-        <div class="singup__name-container">
-          <label class="singup__name-label" for="fullname">Full name</label>
+        <div class="signup__name-container">
+          <label class="signup__name-label" for="fullname">Full name</label>
           <input
-            class="singup__name-input"
+            class="signup__name-input"
             type="text"
             name="name"
             id="fullname"
+            autocomplete="name"
             required
             placeholder="FULL NAME"
           />
@@ -101,50 +102,58 @@
             type="date"
             name="birthday"
             id="birthday"
+            autocomplete="birthday"
           />
         </div>
 
-        <div class="singup__phone-container">
-          <label class="singup__phone-label" for="phonenumber">Phone</label>
+        <div class="signup__phone-container">
+          <label class="signup__phone-label" for="phonenumber">Phone</label>
           <input
-            class="singup__phone-input"
+            class="signup__phone-input"
             type="tel"
             name="phone"
             id="phonenumber"
             placeholder="PHONE NUMBER"
+            autocomplete="phone"
             required
           />
         </div>
 
-        <div class="singup__email-container">
-          <label class="singup__email-label" for="emailaddress">Email</label>
+        <div class="signup__email-container">
+          <label class="signup__email-label" for="emailaddress">Email</label>
           <input
-            class="singup__email-input"
+            class="signup__email-input"
             type="email"
             name="email"
             id="emailaddress"
             placeholder="EMAIL ADDRESS"
+            autocomplete="email"
             required
           />
         </div>
 
-        <div class="singup__country-container">
-          <select class="singup__country" name="" id="country">
-            <option class="singup__country-option" value="country">
+        <div class="signup__country-container">
+          <select
+            class="signup__country"
+            name=""
+            id="country"
+            autocomplete="country"
+          >
+            <option class="signup__country-option" value="country">
               Select a Country/Region
             </option>
           </select>
         </div>
 
         <div>
-          <div class="singup__terms-container">
+          <div class="signup__terms-container">
             <input
-              class="singup__terms-input"
+              class="signup__terms-input"
               type="checkbox"
               id="terms"
               required
             />
-            <label class="singup__terms-label" for="terms"
+            <label class="signup__terms-label" for="terms"
               >I agree to receive personalized updates and marketing messages
               about Coldplay based on my information, interests, activities,
               website visits and device data. For more information about how we
@@ -153,14 +162,14 @@
             >
           </div>
 
-          <div class="singup__condition-container">
+          <div class="signup__condition-container">
             <input
-              class="singup__condition-input"
+              class="signup__condition-input"
               type="checkbox"
               id="condition"
               required
             />
-            <label class="singup__condition-label" for="condition"
+            <label class="signup__condition-label" for="condition"
               >By providing my phone number above, I agree that I am 13+ and
               agree to receive recurring messages via SMS or WhatsApp from or on
               behalf of Coldplay, and agree to Community's Terms/Privacy:
@@ -170,11 +179,16 @@
             >
           </div>
 
-          <div class="singup__submit-container">
-            <button class="singup__submit-button" type="submit">Sign up</button>
+          <div class="signup__submit-container">
+            <button class="signup__submit-button" type="submit">Sign up</button>
           </div>
         </div>
       </form>
+
+      <div class="signup__toast">
+        Congrats! your now signed up✨
+        <span class="signup__toast-close-button">x</span>
+      </div>
     </main>
 
     <footer>
