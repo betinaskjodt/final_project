@@ -1,0 +1,114 @@
+main {
+  width: 100%;
+  height: 100%;
+}
+/* styling tabs */
+.button__options-container {
+  width: 50%;
+  display: flex;
+  padding: var(--spacing-medium);
+  gap: var(--spacing-xsmall);
+}
+
+.button__option {
+  flex-grow: 1;
+  padding: var(--spacing-xsmall);
+  font-size: var(--font-size-small);
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+/* displaying slidhow in center of page */
+.slideshow {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* displaying albums in a row */
+.slideshow__albums {
+  display: flex;
+}
+
+/* hiding all the albums execept the album that is active */
+.slideshow__link-to-album {
+  text-decoration: none;
+  color: black;
+  display: none;
+}
+
+.slideshow__link-to-album--active {
+  display: block;
+}
+
+/* styling for album images, adding positon for buttons to realte to */
+.slideshow__image-contaner {
+  position: relative;
+}
+
+.slideshow__image {
+  width: 400px;
+  height: 400px;
+}
+
+/* styling text realted to album */
+.slideshow__title,
+.slideshow__year {
+  text-align: center;
+  text-transform: uppercase;
+  padding: var(--spacing-xsmall) 0;
+}
+
+/* styling for buttons  */
+.slideshow__arrow-button {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: 0.3px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.slideshow__arrow-icon {
+  color: black;
+}
+
+.previous {
+  position: absolute;
+  top: 65%;
+  left: 17%;
+  z-index: 1;
+}
+
+.next {
+  position: absolute;
+  top: 65%;
+  right: 17%;
+  z-index: 1;
+}
+
+/* styling for dots */
+.slideshow__dot-container {
+  padding: var(--spacing-medium);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-small);
+}
+
+.slideshow__dot {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.slideshow__dot--active {
+  background-color: gray;
+}
