@@ -1,0 +1,167 @@
+/* displaying news(card-component) with grid */
+.news {
+  padding: var(--spacing-medium);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: var(--spacing-medium);
+}
+
+/* removes section when "see more" button is clicked */
+.news--hidden {
+  display: none;
+  transition: opacity 0.3s ease-out;
+}
+
+/* styling news-card */
+.news__card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: var(--quaternary-color);
+  color: var(--primary-color);
+  transform: scale(1);
+  transition: transform 0.3s ease-in;
+}
+
+.news__card:hover {
+  transform: scale(1.03);
+  transition: transform 0.3s ease-in;
+  box-shadow: var(--quaternary-color) 0px 20px 30px -10px;
+}
+
+/* styling for items inside news-card*/
+.news__card-date {
+  align-self: center;
+  padding: var(--spacing-xsmall);
+}
+
+.news__card-img {
+  height: 60%;
+  object-position: center;
+  object-fit: cover;
+}
+
+.news__card-title {
+  padding: var(--spacing-medium) var(--spacing-small);
+}
+
+.news__card-link {
+  align-self: flex-end;
+  margin-top: auto;
+  padding: var(--spacing-medium);
+}
+
+.news__card-link-button {
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  padding: var(--spacing-xsmall);
+  color: var(--quaternary-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-color);
+  transition: background-color 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+
+.news__card-link-button:hover {
+  background-color: var(--hover-color);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.news__card-link-icon {
+  padding: var(--spacing-xsmall);
+}
+
+.news__card-link-button:active {
+  transform: scale(0.95);
+}
+/* ----------------------------------------------------------------------------- */
+/* srylinf for showing individual news section */
+.hiden {
+  display: none;
+}
+
+.visible {
+  display: block;
+  transition: opacity 0.3s ease-in;
+}
+
+.news__container {
+  padding: var(--spacing-medium);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+  color: var(--quaternary-color);
+}
+
+.news__back-button {
+  width: var(--spacing-xlarge);
+  height: var(--spacing-medium);
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: var(--quaternary-color);
+  color: var(--primary-color);
+  padding: var(--spacing-small);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-base);
+  margin-left: var(--spacing-large);
+}
+
+.news__back-button:hover {
+  background-color: var(--tertiary-color);
+}
+
+.news__title {
+  padding: var(--spacing-medium);
+  text-align: center;
+  text-transform: uppercase;
+  font-family: var(--font-family-bold);
+  font-size: var(--font-size-large);
+}
+
+.news__image {
+  width: 100%;
+  height: 800px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.news__description {
+  line-height: 1.6;
+  font-size: var(--font-size-small);
+  padding: var(--spacing-small) var(--spacing-medium);
+}
+
+.news__list-container {
+  margin-left: 25%;
+  width: 50%;
+  border: 1px solid var(--quaternary-color);
+  padding: var(--spacing-medium) var(--spacing-large);
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+  border-radius: 20px;
+}
+
+.news__list-title {
+  padding: var(--spacing-xsmall) var(--spacing-medium);
+}
+
+.news__list {
+  padding: 0 var(--spacing-large);
+  line-height: 1.6;
+}
+
+.news__list-item {
+  list-style: decimal;
+  padding: 0 var(--spacing-small);
+  /* border-bottom: 1px solid var(--quaternary-color); */
+}
