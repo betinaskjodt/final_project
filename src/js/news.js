@@ -79,7 +79,7 @@ const news = [
 ];
 
 const newsCardSection = document.querySelector(".news");
-const NewsArticleSection = document.querySelector(".news-content");
+const newsArticleSection = document.querySelector(".news-content");
 
 document.addEventListener("DOMContentLoaded", () => {
   createContent(news);
@@ -129,59 +129,74 @@ const displayNewsArticle = () => {
 
   linkbuttons.forEach((button) => {
     button.addEventListener("click", (e) => {
-      news.forEach((item) => {
-        const newsArticleContainer = document.createElement("div");
-        newsArticleContainer.classList.add("news__container");
+      const index = e.target.dataset.index;
+      const item = news[index];
 
-        const newsArticleTitle = document.createElement("h2");
-        newsArticleTitle.classList.add("news__title");
-        newsArticleTitle.textContent = news.title.toUpperCase();
+      newsArticleSection.textContent = "";
 
-        const backButton = document.createElement("button");
-        backButton.classList.add("news__back-button");
-        backButton.textContent = "Go back";
-        backButton.addEventListener("click", () => {
-          newsCardSection.classList.remove("news--active");
-        });
+      const newsArticleContainer = document.createElement("div");
+      newsArticleContainer.classList.add("news__container");
 
-        Object.keys(item).forEach((key) => {
-          if (item.video) {
-            const newsArticleVideo = document.createElement("a");
-            newsArticleVideo.href = item.video;
-            newsArticleVideo.classList.add("news__video");
-            newsArticleContainer.append(newsArticleVideo);
-          } else {
-            const newsArticleImage = document.createElement("img");
-            newsArticleImage.classList.add("news__image");
-            newsArticleImage.src = item.imageURL;
-            newsArticleImage.alt = `ìmage of ${item.title}`;
-          }
+      const newsArticleTitle = document.createElement("h2");
+      newsArticleTitle.classList.add("news__title");
+      newsArticleTitle.textContent = item.title;
 
-          if (key.startsWith("description")) {
-            const newsArticleDescription = document.createElement("p");
-            newsArticleDescription.classList.add("news__description");
-            newsArticleContainer.append(newsArticleDescription);
-          }
+      const backButton = document.createElement("button");
+      backButton.classList.add("news__back-button");
+      backButton.textContent = "close";
 
-          if (item.albumList) {
-            const newsArticleList = document.createElement("ul");
+      const backButtonIcon = document.createElement("i");
+      backButtonIcon.className = "fa-solid fa-xmark";
+      backButtonIcon.classList.add("news__back-button-icon");
 
-            Object.keys(Array).forEach((listItem) => {
-              const newsArticleSongListItem = document.createElement("li");
-              newsArticleSongListItem.textContent = listItem;
-              newsArticleSongListItem.classList.add("news__list-item");
-              newsArticleList.append(newsArticleSongListItem);
-            });
-            newsArticleContainer.append(newsArticleList);
-          }
-        });
-
-        newsArticleContainer.append(backButton, newsArticleTitle);
-        NewsArticleSection.append(newsArticleContainer);
+      backButton.append(backButtonIcon);
+      backButton.addEventListener("click", () => {
+        newsArticleSection.textContent = "";
+        newsCardSection.classList.remove("visible");
+        newsArticleContainer.classList.remove("hiden");
       });
 
-      e.target.dataset[index];
-      newsCardSection.classList.add("news--active");
+      newsArticleContainer.append(backButton, newsArticleTitle);
+
+      Object.keys(item).forEach((key) => {
+        if (key.video) {
+          const newsArticleVideo = document.createElement("a");
+          newsArticleVideo.href = video;
+          newsArticleVideo.classList.add("news__video");
+          newsArticleContainer.append(newsArticleVideo);
+        }
+
+        if (key.imageURL) {
+          const newsArticleImage = document.createElement("img");
+          newsArticleImage.classList.add("news__image");
+          newsArticleImage.src = imageURL;
+          newsArticleImage.alt = `ìmage of ${item.title}`;
+          newsArticleContainer.append(newsArticleImage);
+        }
+
+        if (key.startsWith("description")) {
+          const newsArticleDescription = document.createElement("p");
+          newsArticleDescription.classList.add("news__description");
+          newsArticleDescription.textContent = item[key];
+          newsArticleContainer.append(newsArticleDescription);
+        }
+
+        if (key.albumList) {
+          const newsArticleList = document.createElement("ul");
+          item.albumList.forEach((song) => {
+            const newsArticleSongListItem = document.createElement("li");
+            newsArticleSongListItem.textContent = song;
+            newsArticleSongListItem.classList.add("news__list-item");
+            newsArticleList.append(newsArticleSongListItem);
+          });
+          newsArticleContainer.append(newsArticleList);
+        }
+      });
+
+      newsArticleSection.append(newsArticleContainer);
+
+      newsCardSection.classList.add("hidden");
+      newsArticleContainer.classList.add("visible");
     });
   });
 };
