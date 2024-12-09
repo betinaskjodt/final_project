@@ -19,14 +19,14 @@ const news = [
       "Watch the new video for The Karate Kid, taken from the expanded Full Moon Edition of Moon Music.",
     description2:
       "The video stars legendary actor Ralph Macchio (The Karate Kid and Cobra Kai) as a down-on-his-luck busker who gets his shot at a Coldplay stadium show in Melbourne.",
-    video: "https://youtu.be/8vCD_lK_B1w",
+    video:
+      '<iframe width="560" height="315" src="https://www.youtube.com/embed/8vCD_lK_B1w?si=5d0uN8Kcbw_-HWPW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
     imageURL: "../assets/images/news/news-thekaratekid.webp",
   },
   {
     date: "October 1, 2024",
     title: "MOON MUSiC out today - get the TOUR EDITION",
-    description1:
-      "Coldplay’s new album, Moon, Music, is out today everywhere! Listen here.",
+    description1: "Coldplay’s new album, Moon, Music, is out today everywhere!",
     description2:
       "And for a limited time, you can get the special Tour Edition from the Coldplay Store, which features the full, new album alongside ten exclusive live tracks from the Music Of The Spheres World Tour. Plus it comes with an 80-page digital booklet of photography from the tour.",
     albumtitle: "MOON MUSIC",
@@ -129,10 +129,14 @@ const displayNewsArticle = () => {
 
   linkbuttons.forEach((button) => {
     button.addEventListener("click", (e) => {
-      const index = e.target.dataset.index;
+      const index = e.target.dataset.index || e.target.parentNode.dataset.index;
       const item = news[index];
 
       newsArticleSection.textContent = "";
+      newsArticleSection.classList.add("visible");
+      newsArticleSection.classList.remove("hidden");
+
+      newsCardSection.classList.add("news--hidden");
 
       const newsArticleContainer = document.createElement("div");
       newsArticleContainer.classList.add("news__container");
@@ -152,46 +156,57 @@ const displayNewsArticle = () => {
       backButton.append(backButtonIcon);
       backButton.addEventListener("click", () => {
         newsArticleSection.textContent = "";
-        newsCardSection.classList.remove("visible");
-        newsArticleContainer.classList.remove("hiden");
+        newsCardSection.classList.remove("news--hidden");
       });
 
       newsArticleContainer.append(backButton, newsArticleTitle);
 
+      //   did not manage to solve. and i know innerHTML suddent be used for security resons 🥲
+      //   if (item.video) {
+      //     const newsArticleVideoContainer = document.createElement("div");
+      //     newsArticleVideoContainer.classList.add("news__video");
+      //     // newsArticleVideoContainer.innerHTML = item.video;
+      //     newsArticleContainer.append(newsArticleVideoContainer);
+      //   }
+
+      if (item.imageURL) {
+        const newsArticleImage = document.createElement("img");
+        newsArticleImage.classList.add("news__image");
+        newsArticleImage.src = item.imageURL;
+        newsArticleImage.alt = `ìmage of ${item.title}`;
+        newsArticleContainer.append(newsArticleImage);
+        if (item.video === true) {
+          newsArticleContainer.remove(newsArticleImage);
+        }
+      }
+
       Object.keys(item).forEach((key) => {
-        if (key.video) {
-          const newsArticleVideo = document.createElement("a");
-          newsArticleVideo.href = video;
-          newsArticleVideo.classList.add("news__video");
-          newsArticleContainer.append(newsArticleVideo);
-        }
-
-        if (key.imageURL) {
-          const newsArticleImage = document.createElement("img");
-          newsArticleImage.classList.add("news__image");
-          newsArticleImage.src = imageURL;
-          newsArticleImage.alt = `ìmage of ${item.title}`;
-          newsArticleContainer.append(newsArticleImage);
-        }
-
         if (key.startsWith("description")) {
           const newsArticleDescription = document.createElement("p");
           newsArticleDescription.classList.add("news__description");
           newsArticleDescription.textContent = item[key];
           newsArticleContainer.append(newsArticleDescription);
         }
-
-        if (key.albumList) {
-          const newsArticleList = document.createElement("ul");
-          item.albumList.forEach((song) => {
-            const newsArticleSongListItem = document.createElement("li");
-            newsArticleSongListItem.textContent = song;
-            newsArticleSongListItem.classList.add("news__list-item");
-            newsArticleList.append(newsArticleSongListItem);
-          });
-          newsArticleContainer.append(newsArticleList);
-        }
       });
+
+      if (item.albumList) {
+        const newsArticlelistContent = document.createElement("div");
+        newsArticlelistContent.classList.add("news__list-container");
+        const newsArticleListTitle = document.createElement("h3");
+        newsArticleListTitle.classList.add("news__list-title");
+        newsArticleListTitle.textContent = item.albumtitle;
+        const newsArticleList = document.createElement("ol");
+        newsArticleList.classList.add("news__list");
+        item.albumList.forEach((song) => {
+          const newsArticleSongListItem = document.createElement("li");
+          newsArticleSongListItem.textContent = song;
+          newsArticleSongListItem.classList.add("news__list-item");
+          newsArticleList.append(newsArticleSongListItem);
+        });
+
+        newsArticlelistContent.append(newsArticleListTitle, newsArticleList);
+        newsArticleContainer.append(newsArticlelistContent);
+      }
 
       newsArticleSection.append(newsArticleContainer);
 
