@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="../css/music.css" />
+
     <title>Coldplay - Music</title>
   </head>
   <body>
@@ -26,45 +27,33 @@
 
         <div class="navbar__menu-container">
           <ul class="navbar__links-list navbar__links-list--active">
-            <li class="navbar__item navbar__item--active">
-              <a
-                class="navbar__link navbar__link--active"
-                data-page="home"
-                href="../index.html"
+            <li class="navbar__item">
+              <a class="navbar__link" data-page="home" href="../index.html"
                 >HOME</a
               >
             </li>
             <li class="navbar__item">
-              <a class="navbar__link" data-page="news" href="../pages/news.html"
+              <a class="navbar__link" data-page="news" href="./news.html"
                 >NEWS</a
               >
             </li>
             <li class="navbar__item">
-              <a class="navbar__link" data-page="tour" href="../pages/tour.html"
+              <a class="navbar__link" data-page="tour" href="./tour.html"
                 >TOUR</a
               >
             </li>
             <li class="navbar__item">
-              <a
-                class="navbar__link"
-                data-page="music"
-                href="../pages/music.html"
+              <a class="navbar__link" data-page="music" href="./music.html"
                 >MUSIC</a
               >
             </li>
             <li class="navbar__item">
-              <a
-                class="navbar__link"
-                data-page="signup"
-                href="../pages/signup.html"
+              <a class="navbar__link" data-page="signup" href="./signup.html"
                 >SIGN UP</a
               >
             </li>
             <li class="navbar__item">
-              <a
-                class="navbar__link"
-                data-page="store"
-                href="../pages/store.html"
+              <a class="navbar__link" data-page="store" href="./store.html"
                 >STORE</a
               >
             </li>
@@ -79,7 +68,28 @@
       </nav>
     </header>
 
-    <main></main>
+    <main>
+      <section class="button__options-container">
+        <button class="button__option">Albums</button>
+        <button class="button__option">Singles</button>
+        <button class="button__option">Songs</button>
+      </section>
+
+      <section class="slideshow">
+        <div class="slideshow__albums"></div>
+        <div class="slideshow__arrow-button-container">
+          <button class="slideshow__arrow-button previous">
+            <i class="fa-solid fa-chevron-left fa-xl slideshow__arrow-icon">
+            </i>
+          </button>
+          <button class="slideshow__arrow-button next">
+            <i class="fa-solid fa-chevron-right fa-xl slideshow__arrow-icon">
+            </i>
+          </button>
+        </div>
+        <div class="slideshow__dot-container"></div>
+      </section>
+    </main>
 
     <footer>
       <section class="sosial-media">
@@ -147,6 +157,7 @@
         </div>
       </section>
     </footer>
-    <script src="./js/app.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/music.js"></script>
   </body>
 </html>
