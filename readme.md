@@ -14,3 +14,5 @@ cdnjs (n.d). font-awsome -the iconic SVG, font, and CSS toolkit. Retrived decemb
 geeksforgeeks (october 24, 2024). how to include a javascript file in another javascript file? Retrived december 3, 2024, from https://www.geeksforgeeks.org/how-to-include-a-javascript-file-in-another-javascript-file/
 
 Dianat, R (November 18, 2024) 181124-Forms-Local storage.pdf. Retrived desmber 5, 2024, from https://kristiania.instructure.com/courses/12270/files/1510858?module_item_id=518392
+
+stack overflow. seaching for clues to my problems. retrived novemver 20, 2024, from https://stackoverflow.com/
