@@ -320,8 +320,6 @@ displayButtons.forEach((button, index) => {
     displayContent[index].classList.add("music-box__content--active");
 
     if (index === 0) {
-      // albumContainer.textContent = "";
-      // dotContainer.textContent = "";
       createAlbumContent(albums);
       displayActiveAlbum();
     } // else if (index === 1) {
@@ -402,13 +400,8 @@ const createAlbumContent = (albumsArray) => {
       showAlbum(index);
     });
     dotContainer.append(dot);
-
-    // slideContainer.append(albumcover);
-    // albumContainer.append(slideContainer);
   });
 };
-
-// createAlbumContent(albums, slideContainer, dotContainer);
 
 // using dots index to display correct album in slidshow.
 const displayActiveAlbum = () => {
