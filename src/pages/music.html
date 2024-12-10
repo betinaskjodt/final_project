@@ -64,26 +64,32 @@
     </header>
 
     <main>
-      <section class="button__options-container">
-        <button class="button__option">Albums</button>
-        <button class="button__option">Singles</button>
-        <button class="button__option">Songs</button>
-      </section>
-
-      <section class="slideshow">
-        <div class="slideshow__albums"></div>
-        <div class="slideshow__arrow-button-container">
-          <button class="slideshow__arrow-button previous">
-            <i class="fa-solid fa-chevron-left fa-xl slideshow__arrow-icon">
-            </i>
-          </button>
-          <button class="slideshow__arrow-button next">
-            <i class="fa-solid fa-chevron-right fa-xl slideshow__arrow-icon">
-            </i>
-          </button>
+      <div class="music-box">
+        <div class="music-box__button-container">
+          <button class="music-box-button">Album</button>
+          <button class="music-box-button">Singles</button>
+          <button class="music-box-button">Songs</button>
         </div>
-        <div class="slideshow__dot-container"></div>
-      </section>
+
+        <section class="music-box__content albums">
+          <div class="music-box__slides"></div>
+          <div class="music-box__buttons-container">
+            <button class="music-box__button">
+              <i class="fa-solid fa-chevron-left fa-xl music-box__button-icon">
+              </i>
+            </button>
+            <button class="music-box__button">
+              <i class="fa-solid fa-chevron-right fa-xl music-box__button-icon">
+              </i>
+            </button>
+          </div>
+          <div class="music-box__dot-container"></div>
+        </section>
+
+        <section class="music-box__content singles"></section>
+
+        <section class="music-box__content songs"></section>
+      </div>
     </main>
 
     <footer>

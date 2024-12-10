@@ -2,25 +2,56 @@ main {
   width: 100%;
   height: 100%;
 }
-/* styling tabs */
-.button__options-container {
+
+/* adding/removing content from display */
+.music-box__content {
+  display: none;
+}
+
+.music-box__content--active {
+  display: block;
+}
+
+/* styling for buttons */
+.music-box__button-container {
   width: 50%;
   display: flex;
   padding: var(--spacing-medium);
   gap: var(--spacing-xsmall);
 }
 
-.button__option {
+.music-box-button {
   flex-grow: 1;
   padding: var(--spacing-xsmall);
   font-size: var(--font-size-small);
-  border: 1px solid black;
+  border: 1px solid var(--quaternary-color);
+  color: var(--quaternary-color);
   border-radius: 5px;
   background-color: transparent;
 }
 
+.music-box-button--active {
+  background-color: var(--quaternary-color);
+  color: var(--primary-color);
+}
+
+.music-box-button:hover,
+.music-box-button--active:hover {
+  background-color: var(--hover-color);
+  color: var(--quaternary-color);
+}
+
+/* toggle class for section content */
+/* .option {
+  display: none;
+}
+
+.option--active {
+  display: block;
+} */
+
 /* displaying slidhow in center of page */
-.slideshow {
+/* .slideshow {
   width: 100%;
   height: 100%;
 
@@ -28,15 +59,15 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
+} */
 
 /* displaying albums in a row */
-.slideshow__albums {
+/* .slideshow__albums {
   display: flex;
-}
+} */
 
 /* hiding all the albums execept the album that is active */
-.slideshow__link-to-album {
+/* .slideshow__link-to-album {
   text-decoration: none;
   color: black;
   display: none;
@@ -44,28 +75,28 @@ main {
 
 .slideshow__link-to-album--active {
   display: block;
-}
+} */
 
 /* styling for album images, adding positon for buttons to realte to */
-.slideshow__image-contaner {
+/* .slideshow__image-contaner {
   position: relative;
 }
 
 .slideshow__image {
   width: 400px;
   height: 400px;
-}
+} */
 
 /* styling text realted to album */
-.slideshow__title,
+/* .slideshow__title,
 .slideshow__year {
   text-align: center;
   text-transform: uppercase;
   padding: var(--spacing-xsmall) 0;
-}
+} */
 
 /* styling for buttons  */
-.slideshow__arrow-button {
+/* .slideshow__arrow-button {
   width: 30px;
   height: 30px;
   background-color: transparent;
@@ -80,20 +111,20 @@ main {
 
 .previous {
   position: absolute;
-  top: 65%;
+  top: 62%;
   left: 17%;
   z-index: 1;
 }
 
 .next {
   position: absolute;
-  top: 65%;
+  top: 62%;
   right: 17%;
   z-index: 1;
-}
+} */
 
 /* styling for dots */
-.slideshow__dot-container {
+/* .slideshow__dot-container {
   padding: var(--spacing-medium);
   width: 100%;
   display: flex;
@@ -111,4 +142,42 @@ main {
 
 .slideshow__dot--active {
   background-color: gray;
+} */
+
+/* ----------------------------------------------------------- */
+/* styling/layout for single section  */
+/* .singles {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: var(--spacing-small);
+  padding: var(--spacing-medium);
+  text-transform: uppercase;
+} */
+
+/* styling single card component */
+/* .singles__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xsmall);
+  border: 1px solid black;
+  background-color: var(--quaternary-color);
+  color: var(--primary-color);
 }
+
+.singles__card-img {
+  width: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.singles__card-title,
+.singles__card-releaseyear {
+  padding: var(--spacing-xsmall);
+  text-align: center;
+} */
+
+/* -------------------------------------------------------------- */
