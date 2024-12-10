@@ -295,6 +295,16 @@ const singles = [
 
 const displayButtons = document.querySelectorAll(".music-box-button");
 const displayContent = document.querySelectorAll(".music-box__content");
+//
+const albumContainer = document.querySelector(".albums");
+const singlesContainer = document.querySelector(".singles");
+const songsContainer = document.querySelector(".songs");
+//
+const slideContainer = document.querySelector(".music-box__slides-container");
+const dotContainer = document.querySelector(".music-box__dot-container");
+const nextButton = document.querySelector(".next");
+const previusButton = document.querySelector(".previous");
+//
 
 // displaying content by click event on buttons on broswer.
 displayButtons.forEach((button, index) => {
@@ -308,57 +318,136 @@ displayButtons.forEach((button, index) => {
 
     e.target.classList.add("music-box-button--active");
     displayContent[index].classList.add("music-box__content--active");
+
+    if (index === 0) {
+      // albumContainer.textContent = "";
+      // dotContainer.textContent = "";
+      createAlbumContent(albums);
+      displayActiveAlbum();
+    } // else if (index === 1) {
+    // } else if (index === 2) {
+    // }
   });
 });
 
-// const songs = [
-//   "🌈",
-//   "🌎",
-//   "🪐",
-//   "a head full of dreams",
-//   "x&y",
-//   "a rush of blodd to the head",
-//   "gost stories",
-//   "violent hill",
-//   "clocks",
-//   "atlas",
-//   "music of the spheres",
-//   "everyday life",
-//   "shiver",
-//   "birds",
-//   "parachutes",
-//   "broken",
-//   "a sky full of stars",
-//   "talk",
-//   "yellow",
-//   "in my place",
-//   "the scientist",
-//   "colour spectrum",
-//   "crests of waves",
-//   "don't panic",
-//   "everglow",
-//   "fun",
-//   "gravity",
-//   "high speed",
-//   "humankind",
-//   "ink",
-//   "let sombody go",
-//   "low",
-//   "my universe",
-// ];
+let activeAlbum = 0;
 
-// selceting element from html file
+// creating slides/dots from albums Array
+const createAlbumContent = (albumsArray) => {
+  slideContainer.textContent = "";
+  dotContainer.textContent = "";
 
-// const displayButtons = document.querySelectorAll(".button__option");
-// const sections = document.querySelectorAll(".option");
-// const slideshowSection = document.querySelector(".slideshow__albums");
-// const singlesContainer = document.querySelector(".singles");
-// const songContainer = document.querySelector(".songs");
-// const previousButton = document.querySelector(".previous");
-// const nextButton = document.querySelector(".next");
-// const dotContainer = document.querySelector(".slideshow__dot-container");
+  albumsArray.forEach((album, index) => {
+    const slide = document.createElement("div");
+    slide.classList.add("music-box__slides");
+    slide.dataset.index = index;
 
-// let activeAlbum = 0;
+    // front cover
+    const slideFrontCover = document.createElement("div");
+    slideFrontCover.classList.add("music-box__slides-cover", "front");
+    slideFrontCover.dataset.index = index;
+
+    const imageContainer = document.createElement("div");
+    imageContainer.classList.add("music-box__slides-image-contaner");
+
+    const imageElement = document.createElement("img");
+    imageElement.classList.add("music-box__slides-image");
+    imageElement.src = album.imageURL;
+    imageElement.alt = `${album.title} album image`;
+
+    const frontCoverTitle = document.createElement("h3");
+    frontCoverTitle.classList.add("music-box__slides-title-front-cover");
+    frontCoverTitle.textContent = album.title;
+
+    const year = document.createElement("p");
+    year.classList.add("music-box__slides-year");
+    year.textContent = album.year;
+
+    // back cover
+    const slideBackCover = document.createElement("div");
+    slideBackCover.classList.add("music-box__slides-back", "back");
+    slideBackCover.dataset.index = index;
+
+    const backCoverTitle = document.createElement("h3");
+    backCoverTitle.classList.add("music-box__slides-title-back-cover");
+    backCoverTitle.textContent = album.title;
+
+    const backCoverlist = document.createElement("ol");
+    backCoverlist.classList.add("music-box__slides-list");
+
+    album.songs.forEach((song) => {
+      const backCoverListItem = document.createElement("li");
+      backCoverListItem.classList.add("music-box__slides-list-item");
+      backCoverListItem.textContent = song;
+      backCoverlist.append(backCoverListItem);
+    });
+
+    // for slip-effect on albums
+    slide.addEventListener("click", () => {
+      slide.classList.toggle("music-box__slides--flipped");
+    });
+
+    // appending created content together
+    imageContainer.append(imageElement);
+    slideFrontCover.append(imageContainer, frontCoverTitle, year);
+    slideBackCover.append(backCoverTitle, backCoverlist);
+    slide.append(slideFrontCover, slideBackCover);
+    slideContainer.append(slide);
+
+    // dots
+    const dot = document.createElement("span");
+    dot.classList.add("music-box__dot");
+    dot.dataset.index = index;
+    dot.addEventListener("click", () => {
+      showAlbum(index);
+    });
+    dotContainer.append(dot);
+
+    // slideContainer.append(albumcover);
+    // albumContainer.append(slideContainer);
+  });
+};
+
+// createAlbumContent(albums, slideContainer, dotContainer);
+
+// using dots index to display correct album in slidshow.
+const displayActiveAlbum = () => {
+  const slides = document.querySelectorAll(".music-box__slides");
+  const dots = document.querySelectorAll(".music-box__dot");
+
+  slides.forEach((slide, index) => {
+    slide.classList.toggle("music-box__slides--active", index === activeAlbum);
+  });
+
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("music-box__dot--active", index === activeAlbum);
+  });
+  updateDot();
+};
+
+const showAlbum = (index) => {
+  activeAlbum = index;
+  displayActiveAlbum();
+};
+
+// adding to when clickevent on dot happens, follows index to show correct album
+const updateDot = () => {
+  const dots = document.querySelectorAll(".music-box__dot");
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("music-box__dot--active", index === activeAlbum);
+  });
+};
+
+// adding click event next/previous button. loops trough the albums
+nextButton.addEventListener("click", () => {
+  activeAlbum = (activeAlbum + 1) % albums.length;
+  displayActiveAlbum();
+});
+
+previusButton.addEventListener("click", () => {
+  activeAlbum = (activeAlbum - 1 + albums.length) % albums.length;
+  displayActiveAlbum();
+});
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   filterContent();
@@ -367,6 +456,7 @@ displayButtons.forEach((button, index) => {
 // });
 
 // // sorting display by clickevents on button in display
+
 // const filterContent = () => {
 //   console.log("log this");
 
@@ -406,94 +496,15 @@ displayButtons.forEach((button, index) => {
 
 //   // albumsArray = [...albums];
 //   albumsArray.forEach((album, index) => {
-//     const albumLinkWrapper = document.createElement("a");
-//     albumLinkWrapper.classList.add("slideshow__link-to-album");
-//     albumLinkWrapper.dataset.index = index;
-//     albumLinkWrapper.href = "#";
-
-//     const imageContainer = document.createElement("div");
-//     imageContainer.classList.add("slideshow__image-contaner");
-
-//     const imageElement = document.createElement("img");
-//     imageElement.classList.add("slideshow__image");
-//     imageElement.src = album.imageURL;
-//     imageElement.alt = `${album.title} album image`;
-
-//     const linkContainer = document.createElement("div");
-//     linkContainer.classList.add("slideshow__links-container");
-
-//     const linkDescription = document.createElement("p");
-//     linkDescription.classList.add("slideshow__links-description");
-//     linkDescription.textContent = "Links:";
-
-//     const albumLink = document.createElement("a");
-//     albumLink.classList.add("slideshow__link");
-//     // albumLink.src.textContent = `link${album.links}`;
-
-//     const title = document.createElement("h3");
-//     title.classList.add("slideshow__title");
-//     title.textContent = album.title;
-
-//     const year = document.createElement("p");
-//     year.classList.add("slideshow__year");
-//     year.textContent = album.year;
+//
 
 //     imageContainer.append(imageElement);
 //     linkContainer.append(linkDescription, albumLink);
 //     albumLinkWrapper.append(imageContainer, linkContainer, title, year);
 //     slideshowSection.append(albumLinkWrapper);
 
-//     const dot = document.createElement("span");
-//     dot.classList.add("slideshow__dot");
-//     dot.dataset.index = index;
-//     dot.addEventListener("click", () => {
-//       showAlbum(index);
-//     });
-//     dotContainer.append(dot);
 //   });
 // };
-
-// // using using index to display correct album in slidshow.
-// const displayActiveAlbum = () => {
-//   const albums = document.querySelectorAll(".slideshow__link-to-album");
-//   const dots = document.querySelectorAll(".slideshow__dot");
-
-//   albums.forEach((album, index) => {
-//     album.classList.toggle(
-//       "slideshow__link-to-album--active",
-//       index === activeAlbum
-//     );
-//   });
-
-//   dots.forEach((dot, index) => {
-//     dot.classList.toggle("slideshow__dot--active", index === activeAlbum);
-//   });
-//   updateDot();
-// };
-
-// const showAlbum = (index) => {
-//   activeAlbum = index;
-//   displayActiveAlbum();
-// };
-
-// // adding to click event on dot, when clicked show follow index to show correct album
-// const updateDot = () => {
-//   const dots = document.querySelectorAll(".slideshow__dot");
-//   dots.forEach((dot, index) => {
-//     dot.classList.toggle("slideshow__dot--active", index === activeAlbum);
-//   });
-// };
-
-// // adding click event to loop trough the albums
-// nextButton.addEventListener("click", () => {
-//   activeAlbum = (activeAlbum + 1) % albums.length;
-//   displayActiveAlbum();
-// });
-
-// previousButton.addEventListener("click", () => {
-//   activeAlbum = (activeAlbum - 1 + albums.length) % albums.length;
-//   displayActiveAlbum();
-// });
 
 // // --------------------------------------------------------------------------------------------------
 
@@ -568,3 +579,39 @@ displayButtons.forEach((button, index) => {
 //     songContainer.append(letterContainer);
 //   }
 // };
+
+// const songs = [
+//   "🌈",
+//   "🌎",
+//   "🪐",
+//   "a head full of dreams",
+//   "x&y",
+//   "a rush of blodd to the head",
+//   "gost stories",
+//   "violent hill",
+//   "clocks",
+//   "atlas",
+//   "music of the spheres",
+//   "everyday life",
+//   "shiver",
+//   "birds",
+//   "parachutes",
+//   "broken",
+//   "a sky full of stars",
+//   "talk",
+//   "yellow",
+//   "in my place",
+//   "the scientist",
+//   "colour spectrum",
+//   "crests of waves",
+//   "don't panic",
+//   "everglow",
+//   "fun",
+//   "gravity",
+//   "high speed",
+//   "humankind",
+//   "ink",
+//   "let sombody go",
+//   "low",
+//   "my universe",
+// ];
