@@ -306,6 +306,8 @@ const nextButton = document.querySelector(".next");
 const previusButton = document.querySelector(".previous");
 //
 
+let activeAlbum = 0;
+
 // displaying content by click event on buttons on broswer.
 displayButtons.forEach((button, index) => {
   button.addEventListener("click", (e) => {
@@ -322,13 +324,14 @@ displayButtons.forEach((button, index) => {
     if (index === 0) {
       createAlbumContent(albums);
       displayActiveAlbum();
-    } // else if (index === 1) {
-    // } else if (index === 2) {
-    // }
+    } else if (index === 1) {
+      creatingSinglesContent();
+    } else if (index === 2) {
+      const groupSongs = organizeSongContent();
+      createSongContent(groupSongs);
+    }
   });
 });
-
-let activeAlbum = 0;
 
 // creating slides/dots from albums Array
 const createAlbumContent = (albumsArray) => {
@@ -342,7 +345,7 @@ const createAlbumContent = (albumsArray) => {
 
     // front cover
     const slideFrontCover = document.createElement("div");
-    slideFrontCover.classList.add("music-box__slides-cover", "front");
+    slideFrontCover.classList.add("music-box__slides-cover", "fade-in");
     slideFrontCover.dataset.index = index;
 
     const imageContainer = document.createElement("div");
@@ -363,7 +366,7 @@ const createAlbumContent = (albumsArray) => {
 
     // back cover
     const slideBackCover = document.createElement("div");
-    slideBackCover.classList.add("music-box__slides-back", "back");
+    slideBackCover.classList.add("music-box__slides-back");
     slideBackCover.dataset.index = index;
 
     const backCoverTitle = document.createElement("h3");
@@ -382,7 +385,8 @@ const createAlbumContent = (albumsArray) => {
 
     // for slip-effect on albums
     slide.addEventListener("click", () => {
-      slide.classList.toggle("music-box__slides--flipped");
+      slideFrontCover.classList.toggle("fade-in");
+      slideBackCover.classList.toggle("fade-in");
     });
 
     // appending created content together
@@ -441,170 +445,85 @@ previusButton.addEventListener("click", () => {
   activeAlbum = (activeAlbum - 1 + albums.length) % albums.length;
   displayActiveAlbum();
 });
+// ---------------------- single content ---------------
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   filterContent();
-//   createAlbumContent(albums);
-//   displayActiveAlbum();
-// });
+// creating cards form single Array
+const creatingSinglesContent = () => {
+  singlesContainer.textContent = "";
+  singles.forEach((single) => {
+    const singleComponent = document.createElement("div");
+    singleComponent.classList.add("music-box__singles-card");
 
-// // sorting display by clickevents on button in display
+    const singleImg = document.createElement("img");
+    singleImg.classList.add("music-box__singles-card-img");
+    singleImg.src = single.imgURL;
+    singleImg.alt = `Imagecover for ${single.title}`;
 
-// const filterContent = () => {
-//   console.log("log this");
+    const singleTitle = document.createElement("h3");
+    singleTitle.classList.add("music-box__singles-card-title");
+    singleTitle.textContent = single.title;
 
-//   displayButtons.forEach((button, index) => {
-//     button.addEventListener("click", (e) => {
-//       sections.forEach((section) => {
-//         section.classList.remove("option--active");
-//       });
-//       displayButtons.forEach((btn) => {
-//         btn.classList.remove("button__option--active");
-//       });
-//       e.target.classList.add("button__option--active");
-//       sections[index].classList.add("option--active");
+    const singleReleased = document.createElement("p");
+    singleReleased.classList.add("music-box__singles-card-releaseyear");
+    singleReleased.textContent = single.released;
 
-//       const activeSection = sections[index];
-//       activeSection.textContent = "";
+    singleComponent.append(singleImg, singleTitle, singleReleased);
+    singlesContainer.append(singleComponent);
+  });
+};
 
-//       if (index === 0) {
-//         createAlbumContent(albums);
-//       } else if (index === 1) {
-//         createSinglesContent(singles);
-//       } else if (index === 3) {
-//         const groupedSong = organizeAlbumSongs();
+//  -------------------------   song content  -------------------------------------------
 
-//         createSongContent(groupedSong);
-//       }
-//     });
-//   });
-// };
+// extracting songs from albums and organizing in alphabetical / #
+const organizeSongContent = () => {
+  const allSongs = albums.flatMap((album) => {
+    return album.songs || [];
+  });
 
-// // ----------------------------------------------------------------------
+  const sortSongs = allSongs.sort((a, b) => {
+    return a.toLowerCase().localeCompare(b.toLowerCase());
+  });
 
-// // creating content from album array
-// const createAlbumContent = (albumsArray) => {
-//   // slideshowSection.textContent = "";
-//   // dotContainer.textContent = "";
+  const groupSongs = sortSongs.reduce((acc, song) => {
+    const firstLetter = song[0];
+    const groupKey = /^[A-Za-z]$/.test(firstLetter)
+      ? firstLetter.toUpperCase()
+      : "#";
 
-//   // albumsArray = [...albums];
-//   albumsArray.forEach((album, index) => {
-//
+    if (!acc[groupKey]) {
+      acc[groupKey] = [];
+    }
 
-//     imageContainer.append(imageElement);
-//     linkContainer.append(linkDescription, albumLink);
-//     albumLinkWrapper.append(imageContainer, linkContainer, title, year);
-//     slideshowSection.append(albumLinkWrapper);
+    acc[groupKey].push(song);
 
-//   });
-// };
+    return acc;
+  }, {});
 
-// // --------------------------------------------------------------------------------------------------
+  return groupSongs;
+};
 
-// // creating content from singles array and displaying them in card components
-// const createSinglesContent = (singlesArray) => {
-//   // singlesContainer.textContent = "";
+// creating content for song section
+const createSongContent = (groupSongs) => {
+  songsContainer.textContent = "";
+  for (let [letter, songs] of Object.entries(groupSongs)) {
+    const letterContainer = document.createElement("div");
+    letterContainer.classList.add("music-box__letter-container");
 
-//   singlesArray.forEach((single) => {
-//     const singleComponent = document.createElement("div");
-//     singleComponent.classList.add("singles__card");
+    const letterTitle = document.createElement("h3");
+    letterTitle.classList.add("music-box__letter-title");
+    letterTitle.textContent = letter === "#" ? "#" : letter;
 
-//     const singleImg = document.createElement("img");
-//     singleImg.classList.add("singles__card-img");
-//     singleImg.src = single.imgURL;
-//     singleImg.alt = `cover img of ${single.title}`;
+    const songlistContainer = document.createElement("div");
+    songlistContainer.classList.add("music-box__song-list-container");
 
-//     const singleTitle = document.createElement("h3");
-//     singleTitle.classList.add("singles__card-title");
-//     singleTitle.textContent = single.title;
+    songs.forEach((song) => {
+      const songListItem = document.createElement("span");
+      songListItem.classList.add("music-box__song");
+      songListItem.textContent = song;
+      songlistContainer.append(songListItem);
+    });
 
-//     const singleRelease = document.createElement("p");
-//     singleRelease.classList.add("singles__card-releaseyear");
-//     singleRelease.textContent = single.released;
-
-//     singleComponent.append(singleImg, singleTitle, singleRelease);
-//     singlesContainer.append(singleComponent);
-//   });
-// };
-
-// // ----------------------------------------------------------------------------------
-
-// // filtering, sorting and grouping the songs by firstletter.
-// const organizeAlbumSongs = () => {
-//   const allsongs = albums.flatMap((album) => album.songs);
-
-//   const sortedSongs = allsongs.sort((a, b) => {
-//     a.toLowerCase().localeCompare(b.toLowerCase());
-//   });
-
-//   const groupedSong = sortedSongs.reduce((acc, song) => {
-//     const firstLetter = song[0].toUpperCase();
-//     if (!acc[firstLetter]) {
-//       acc[firstLetter] = [];
-//     }
-//     acc[firstLetter].push(song);
-//     return acc;
-//   }, {});
-
-//   return groupedSong;
-// };
-
-// // creating content for the song from albums
-// const createSongContent = (groupedSong) => {
-//   for (let [letter, songs] of Object.entries(groupedSong)) {
-//     const letterContainer = document.createElement("div");
-//     letterContainer.classList.add("songs__letter-container");
-
-//     const letterTitle = document.createElement("h3");
-//     letterTitle.classList.add("songs__letter-title");
-//     letterTitle.textContent = letter;
-
-//     const songList = document.createElement("ul");
-//     songList.classList.add("song__letter-list");
-//     songs.forEach((song) => {
-//       const songlistItem = document.createElement("li");
-//       songlistItem.classList.add("song__letter-list-item");
-//       songlistItem.textContent = song;
-//       songList.append(songlistItem);
-//     });
-
-//     letterContainer.append(letterTitle, songList);
-//     songContainer.append(letterContainer);
-//   }
-// };
-
-// const songs = [
-//   "🌈",
-//   "🌎",
-//   "🪐",
-//   "a head full of dreams",
-//   "x&y",
-//   "a rush of blodd to the head",
-//   "gost stories",
-//   "violent hill",
-//   "clocks",
-//   "atlas",
-//   "music of the spheres",
-//   "everyday life",
-//   "shiver",
-//   "birds",
-//   "parachutes",
-//   "broken",
-//   "a sky full of stars",
-//   "talk",
-//   "yellow",
-//   "in my place",
-//   "the scientist",
-//   "colour spectrum",
-//   "crests of waves",
-//   "don't panic",
-//   "everglow",
-//   "fun",
-//   "gravity",
-//   "high speed",
-//   "humankind",
-//   "ink",
-//   "let sombody go",
-//   "low",
-//   "my universe",
-// ];
+    letterContainer.append(letterTitle);
+    songsContainer.append(letterContainer, songlistContainer);
+  }
+};
