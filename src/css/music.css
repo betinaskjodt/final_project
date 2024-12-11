@@ -1,6 +1,7 @@
 main {
   width: 100%;
   height: auto;
+  z-index: 1;
 }
 
 /* adding/removing content from display */
@@ -198,24 +199,25 @@ main {
   text-align: center;
 }
 
-/* --------------------------- song content ------------------------- */
+/* --------------------------- song content: list-like with flex  ------------------------- */
 
 .songs {
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: var(--spacing-small);
 
   color: var(--quaternary-color);
   padding: var(--spacing-medium);
 }
 
 .music-box__letter-container {
-  /* font-size: var(--font-size-xlarge); */
   font-family: var(--font-family-bold);
   font-size: 5rem;
 }
 .music-box__letter-title {
   border-bottom: 1px solid var(--quaternary-color);
+  margin-top: var(--spacing-medium);
 }
 
 .music-box__song-list-container {

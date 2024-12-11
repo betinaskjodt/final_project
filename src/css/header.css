@@ -12,6 +12,7 @@ header {
   align-items: center;
 
   padding: var(--spacing-medium) var(--spacing-large);
+  z-index: 100;
 }
 
 /* styling title in navbar (COLDPLAY) */
@@ -32,6 +33,7 @@ header {
   gap: var(--spacing-medium);
 
   list-style: none;
+  z-index: 110;
 }
 
 .navbar__link,
@@ -60,7 +62,7 @@ header {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  z-index: 100;
+  z-index: 120;
   position: relative;
 }
 
@@ -94,7 +96,6 @@ header {
   .navbar__links-list--active {
     left: 0;
     padding: 0 var(--spacing-medium);
-    /* backdrop-filter: blur(30px); */
   }
 
   .navbar__link {
