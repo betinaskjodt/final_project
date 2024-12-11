@@ -328,7 +328,7 @@ displayButtons.forEach((button, index) => {
       creatingSinglesContent();
     } else if (index === 2) {
       const groupSongs = organizeSongContent();
-      creatingSinglesContent(groupSongs);
+      createSongContent(groupSongs);
     }
   });
 });
@@ -511,19 +511,19 @@ const createSongContent = (groupSongs) => {
 
     const letterTitle = document.createElement("h3");
     letterTitle.classList.add("music-box__letter-title");
-    letterTitle.textContent = letter === "#" ? "other" : letter;
+    letterTitle.textContent = letter === "#" ? "#" : letter;
 
-    const songList = document.createElement("ol");
-    songList.classList.add("music-box__song-list");
+    const songlistContainer = document.createElement("div");
+    songlistContainer.classList.add("music-box__song-list-container");
 
     songs.forEach((song) => {
-      const songListItem = document.createElement("li");
-      songListItem.classList.add("music-box__song-list-item");
+      const songListItem = document.createElement("span");
+      songListItem.classList.add("music-box__song");
       songListItem.textContent = song;
-      songList.append(songListItem);
+      songlistContainer.append(songListItem);
     });
 
-    letterContainer.append(letterTitle, songList);
-    songsContainer.append(letterContainer);
+    letterContainer.append(letterTitle);
+    songsContainer.append(letterContainer, songlistContainer);
   }
 };
