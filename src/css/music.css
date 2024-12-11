@@ -1,6 +1,6 @@
 main {
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 /* adding/removing content from display */
@@ -41,15 +41,16 @@ main {
   color: var(--quaternary-color);
 }
 
-/* ----------------------------- styles for slides ---------------------------------- */
+/* ----------------------------  styles for slides ------------------------------ */
 
 .albums {
   padding: var(--spacing-medium) var(--spacing-large);
   width: 100%;
-  height: 80vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 /* displaying albums in row */
 .music-box__slides-container {
@@ -58,24 +59,19 @@ main {
 
 .music-box__slides {
   display: none;
-  transform: rotateY(0deg);
+  /* transform: rotateY(0deg); */
 }
 
 .music-box__slides--active {
   display: flex;
   flex-direction: row;
-  padding: var(--spacing-medium);
   position: relative;
   perspective: 1000px;
   transform-style: preserve-3d;
   transition: transform 0.6s linear;
 
   width: 400px;
-  height: 600px;
-}
-
-.music-box__slides--flipped {
-  transform: rotateY(180deg);
+  height: 550px;
 }
 
 /* For displaying one album at the time */
@@ -88,6 +84,12 @@ main {
   flex-direction: column;
   align-items: center;
   border: 1px solid var(--quaternary-color);
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+.music-box__slides-cover.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
 }
 
 .music-box__slides-image {
@@ -95,10 +97,6 @@ main {
   height: 100%;
   object-position: center;
   object-fit: cover;
-}
-
-.music-box__slides-cover.back {
-  transform: rotateY(180deg);
 }
 
 .music-box__slides-back {
@@ -109,7 +107,17 @@ main {
   gap: var(--spacing-xsmall);
   text-transform: uppercase;
   padding: var(--spacing-large);
-  transform: scale(-1, 1);
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+.music-box__slides-back.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
+.music-box__slides-list-item {
+  list-style: decimal;
+  padding: 0 var(--spacing-xsmall);
 }
 
 /* styling for dots */
@@ -133,111 +141,38 @@ main {
   background-color: darkgray;
 }
 
-/* --------------------------------------------------------------------------------- */
+.music-box__buttons-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--spacing-small);
+}
+
+.music-box__button {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: 0.5px solid var(--quaternary-color);
+  color: var(--quaternary-color);
+  font-size: var(--font-size-base);
+}
+.music-box__button:active {
+  transform: scale(0.9);
+}
+
+/* --------------- styles for singles: card component using grid --------------- */
 
 .singles {
   width: 100%;
-  height: 80vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: var(--spacing-small);
+  grid-template-rows: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: var(--spacing-medium);
   padding: var(--spacing-medium);
   text-transform: uppercase;
 }
 
-/* toggle class for section content */
-/* .option {
-  display: none;
-}
-
-.option--active {
-  display: block;
-} */
-
-/* displaying slidhow in center of page */
-/* .slideshow {
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-} */
-
-/* displaying albums in a row */
-/* .slideshow__albums {
-  display: flex;
-} */
-
-/* hiding all the albums execept the album that is active */
-/* .slideshow__link-to-album {
-  text-decoration: none;
-  color: black;
-  display: none;
-}
-
-.slideshow__link-to-album--active {
-  display: block;
-} */
-
-/* styling for album images, adding positon for buttons to realte to */
-/* .slideshow__image-contaner {
-  position: relative;
-}
-
-.slideshow__image {
-  width: 400px;
-  height: 400px;
-} */
-
-/* styling text realted to album */
-/* .slideshow__title,
-.slideshow__year {
-  text-align: center;
-  text-transform: uppercase;
-  padding: var(--spacing-xsmall) 0;
-} */
-
-/* styling for buttons  */
-/* .slideshow__arrow-button {
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
-  border: 0.3px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.slideshow__arrow-icon {
-  color: black;
-}
-
-.previous {
-  position: absolute;
-  top: 62%;
-  left: 17%;
-  z-index: 1;
-}
-
-.next {
-  position: absolute;
-  top: 62%;
-  right: 17%;
-  z-index: 1;
-} */
-
-/* ----------------------------------------------------------- */
-/* styling/layout for single section  */
-/* .singles {
-  width: 100%;
-  height: 100%;
-
-} */
-
-/* styling single card component */
-/* .singles__card {
+.music-box__singles-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -247,16 +182,24 @@ main {
   color: var(--primary-color);
 }
 
-.singles__card-img {
+.music-box__singles-card:hover {
+  box-shadow: var(--quaternary-color) 0px 5px 15px;
+}
+
+.music-box__singles-card-img {
   width: 100%;
   object-fit: cover;
   object-position: top center;
 }
 
-.singles__card-title,
-.singles__card-releaseyear {
+.music-box__singles-card-title,
+.music-box__singles-card-releaseyear {
   padding: var(--spacing-xsmall);
   text-align: center;
-} */
+}
 
-/* -------------------------------------------------------------- */
+/* ---------------------------   song content   ------------------------------ */
+
+.songs {
+  width: 100%;
+}
