@@ -81,8 +81,8 @@
 .news__card-link-button:active {
   transform: scale(0.95);
 }
-/* ----------------------------------------------------------------------------- */
-/* srylinf for showing individual news section */
+/* --------------------------------     styling for showing individual news section        --------------------------------------------- */
+
 .hiden {
   display: none;
 }
@@ -92,6 +92,9 @@
   transition: opacity 0.3s ease-in;
 }
 
+/* --------------------------------------styling when "read more" button is clicked ------------------------------------*/
+
+/* styling for container inside "news-content" section */
 .news__container {
   padding: var(--spacing-medium);
   display: flex;
@@ -100,6 +103,7 @@
   color: var(--quaternary-color);
 }
 
+/* styling for "back  button*/
 .news__back-button {
   width: var(--spacing-xlarge);
   height: var(--spacing-medium);
@@ -128,6 +132,7 @@
   font-size: var(--font-size-large);
 }
 
+/* -------------  styling for individual content inside "news-content" section ---------------------- */
 .news__image {
   width: 100%;
   height: 800px;
@@ -163,5 +168,4 @@
 .news__list-item {
   list-style: decimal;
   padding: 0 var(--spacing-small);
-  /* border-bottom: 1px solid var(--quaternary-color); */
 }

@@ -9,6 +9,7 @@ footer {
   align-items: center;
 }
 
+/* styling for media icons */
 .sosial-media {
   width: 100%;
 }
@@ -29,6 +30,7 @@ footer {
   color: var(--hover-color);
 }
 
+/* styles for links */
 .terms__container {
   width: 100%;
   display: flex;
@@ -60,6 +62,7 @@ footer {
   color: var(--hover-color);
 }
 
+/* adding media queries for smaller screens */
 @media screen and (max-width: 1088px) {
   .terms__container {
     flex-direction: column;

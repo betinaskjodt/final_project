@@ -1,6 +1,7 @@
 main {
   width: 100%;
   height: auto;
+  z-index: 1;
 }
 
 /* adding/removing content from display */
@@ -198,7 +199,7 @@ main {
   text-align: center;
 }
 
-/* --------------------------- song content ------------------------- */
+/* --------------------------- song content: list-like with flex  ------------------------- */
 
 .songs {
   width: 100%;
@@ -210,7 +211,6 @@ main {
 }
 
 .music-box__letter-container {
-  /* font-size: var(--font-size-xlarge); */
   font-family: var(--font-family-bold);
   font-size: 5rem;
 }

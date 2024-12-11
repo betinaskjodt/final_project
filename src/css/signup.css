@@ -27,7 +27,7 @@ main {
   padding: var(--spacing-small) var(--spacing-xsmall);
   line-height: 1.6;
 }
-
+/* removing/hiding label from all the text input */
 .signup__name-label,
 .signup__phone-label,
 .signup__email-label,
@@ -35,6 +35,7 @@ main {
   display: none;
 }
 
+/* styling input and select */
 input,
 .signup__country {
   width: 100%;
@@ -50,6 +51,7 @@ input:focus,
   outline: none;
 }
 
+/* styling for check box */
 .signup__terms-container,
 .signup__condition-container {
   display: flex;
@@ -63,6 +65,7 @@ input:focus,
   width: var(--spacing-small);
 }
 
+/* styling for button */
 .signup__submit-container {
   display: flex;
   justify-content: center;
@@ -83,6 +86,7 @@ input:focus,
   background-color: var(--tertiary-color);
 }
 
+/* styling for toast message */
 .signup__toast {
   display: none;
   border: 1px solid black;
@@ -99,6 +103,7 @@ input:focus,
   display: block;
 }
 
+/* styling for button on toast message */
 .signup__toast-close-button {
   cursor: pointer;
   padding: var(--spacing-xsmall);
