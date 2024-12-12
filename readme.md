@@ -44,9 +44,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 If you have any questions of suggestions, feel free to reach out at [betina_horthe@hotmail.com]
 
-## Deployment
-
-add netlify
+## Netlify
 
 ## Sources
 
