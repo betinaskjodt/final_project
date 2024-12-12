@@ -60,7 +60,6 @@ main {
 
 .music-box__slides {
   display: none;
-  /* transform: rotateY(0deg); */
 }
 
 .music-box__slides--active {
@@ -230,4 +229,21 @@ main {
   width: 250px;
   padding: var(--spacing-xsmall);
   text-transform: uppercase;
+}
+
+/* media queries for smaller screens */
+
+@media screen and (max-width: 513px) {
+  .albums {
+    padding: var(--spacing-medium) var(--spacing-small);
+  }
+
+  .music-box__slides--active {
+    width: 350px;
+    height: 550px;
+  }
+  .music-box__dot-container {
+    padding: var(--spacing-xsmall);
+    gap: var(--spacing-xsmall);
+  }
 }
