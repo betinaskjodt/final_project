@@ -3,11 +3,12 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: var(--spacing-small);
 }
 
 /* styling for sign up container */
 .signup {
-  width: 60%;
+  width: 85%;
   min-height: 70vh;
   border: 1px solid black;
   padding: 0 var(--spacing-large);
@@ -19,7 +20,6 @@ main {
   text-align: center;
   font-family: var(--font-family-bold);
   font-size: var(--font-size-xlarge);
-
   padding: var(--spacing-small);
 }
 
@@ -111,4 +111,34 @@ input:focus,
 
 .signup__toast-close-button:hover {
   color: var(--quaternary-color);
+}
+
+/* media queries for smaller screens */
+@media screen and (max-width: 770px) {
+  .signup {
+    padding: 0 var(--spacing-small);
+    width: 100%;
+  }
+
+  .signup__terms-container,
+  .signup__condition-container {
+    line-height: 1.8;
+    padding: var(--spacing-xsmall) 0;
+    gap: var(--spacing-xsmall);
+  }
+}
+
+@media screen and (max-width: 558px) {
+  .signup {
+    padding: 0 var(--spacing-xsmall);
+  }
+  .signup__title {
+    font-size: 2.5rem;
+    padding: var(--spacing-xsmall) 0;
+  }
+
+  .signup__description {
+    padding: var(--spacing-xsmall);
+    line-height: 1.8;
+  }
 }
