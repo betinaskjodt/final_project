@@ -96,7 +96,7 @@
 
 /* styling for container inside "news-content" section */
 .news__container {
-  padding: var(--spacing-medium);
+  padding: var(--spacing-medium) 0;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-small);
@@ -168,4 +168,40 @@
 .news__list-item {
   list-style: decimal;
   padding: 0 var(--spacing-small);
+}
+/* media queries for smaller screens */
+@media screen and (max-width: 845px) {
+  .news__image {
+    height: 100%;
+  }
+  .news__list-container {
+    margin-left: 5%;
+    width: 90%;
+    padding: var(--spacing-small) 0;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  .news__container {
+    padding: var(--spacing-medium) var(--spacing-xsmall);
+    gap: 0;
+  }
+
+  .news__title {
+    padding: var(--spacing-medium) var(--spacing-xsmall);
+  }
+}
+
+@media screen and (max-width: 668px) {
+  .news__container {
+    padding: var(--spacing-medium) 0;
+    gap: 0;
+  }
+  .news__description {
+    padding: var(--spacing-xsmall);
+  }
+
+  .news__back-button {
+    margin-left: var(--spacing-small);
+  }
 }

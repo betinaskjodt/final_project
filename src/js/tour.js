@@ -371,7 +371,7 @@ const printTour = (toursArray) => {
 
     ticketButton.classList.add("tour__ticket-button");
 
-    date.textContent = `Date: ${tour.month} ${tour.date}`;
+    date.textContent = `${tour.month} ${tour.date}`;
     year.textContent = tour.year;
     location.textContent = tour.location;
     continentContainer.textContent = tour.continent;
