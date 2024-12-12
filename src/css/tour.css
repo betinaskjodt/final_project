@@ -83,3 +83,32 @@
   transform: scale(0.9);
   transition: transform 500ms ease;
 }
+
+/* media queries for smaller screens */
+@media screen and (max-width: 825px) {
+  .tab {
+    padding: var(--spacing-medium) var(--spacing-small);
+  }
+  .tour {
+    padding: var(--spacing-small) var(--spacing-xsmall);
+  }
+
+  .tour__container {
+    width: 95%;
+    padding: var(--spacing-xsmall);
+  }
+
+  .tour__continent-container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 535px) {
+  .tab__button {
+    font-size: var(--font-size-xsmall);
+    font-family: var(--font-family-regular);
+  }
+  .tour__ticket-button {
+    width: var(--spacing-large);
+  }
+}

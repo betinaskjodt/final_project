@@ -169,7 +169,7 @@
   list-style: decimal;
   padding: 0 var(--spacing-small);
 }
-
+/* media queries for smaller screens */
 @media screen and (max-width: 845px) {
   .news__image {
     height: 100%;
