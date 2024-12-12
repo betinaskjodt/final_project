@@ -46,6 +46,8 @@ If you have any questions of suggestions, feel free to reach out at [betina_hort
 
 ## Netlify
 
+https://675a40c1e5f7c1c58eb5cf98--courageous-beijinho-92272c.netlify.app/
+
 ## Sources
 
 github (november 18, 2024). 04-Responsive Navbar. Retrived november 20, 2024, from https://github.com/frontend-kristiania/04-responsive-navbar.git
